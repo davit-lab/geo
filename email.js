@@ -1,17 +1,25 @@
-// Twilio-ს გამოყენებით (სერვისი ფასიანია)
-async function sendSmsOtp(phoneNumber, otp) {
-  const accountSid = 'TWILIO_ACCOUNT_SID';
-  const authToken = 'TWILIO_AUTH_TOKEN';
-  const client = require('twilio')(accountSid, authToken);
+// server.js
+const express = require('express');
+const nodemailer = require('nodemailer');
+const app = express();
+app.use(express.json());
 
-  try {
-    await client.messages.create({
-      body: `Your OTP code is: ${otp}`,
-      from: 'TWILIO_PHONE_NUMBER',
-      to: phoneNumber
-    });
-    console.log('SMS sent successfully');
-  } catch (error) {
-    console.error('Error sending SMS:', error);
-  }
-}
+app.post('/send-otp', async (req, res) => {
+  const { email, otp } = req.body;
+  
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: { user: 'your@gmail.com', pass: 'your-password' }
+  });
+
+  await transporter.sendMail({
+    from: 'your@gmail.com',
+    to: email,
+    subject: 'Your OTP Code',
+    text: `Your OTP is: ${otp}`
+  });
+
+  res.send({ success: true });
+});
+
+app.listen(3000, () => console.log('Server running on port 3000'));
