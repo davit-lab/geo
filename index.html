@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ონლაინ მარკეტპლეისი</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- ნავიგაცია -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="index.html" class="logo">MarketPlace</a>
+            <div class="search-container">
+                <input type="text" placeholder="ძებნა...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">მთავარი</a>
+                <a href="#categories">კატეგორიები</a>
+                <a href="#how-it-works">როგორ მუშაობს</a>
+                <div class="auth-buttons">
+                    <button id="login-btn" class="neumorphic-btn">შესვლა</button>
+                    <button id="register-btn" class="neumorphic-btn">რეგისტრაცია</button>
+                </div>
+                <div class="user-dropdown hidden">
+                    <button class="user-menu-btn">
+                        <img src="https://via.placeholder.com/40" alt="პროფილი" class="profile-pic">
+                        <span class="username">მომხმარებელი</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="profile.html"><i class="fas fa-user"></i> პროფილი</a>
+                        <a href="chats.html"><i class="fas fa-comments"></i> ჩეთები</a>
+                        <a href="my-products.html"><i class="fas fa-box-open"></i> ჩემი პროდუქტები</a>
+                        <a href="#" id="logout-btn"><i class="fas fa-sign-out-alt"></i> გამოსვლა</a>
+                    </div>
+                </div>
+            </div>
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- ჰერო სექცია -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1>იყიდე და გაყიდე პროდუქტები მარტივად</h1>
+            <p>შეუერთდი ათასობით მომხმარებელს ჩვენს პლატფორმაზე</p>
+            <button class="cta-btn neumorphic-btn" id="sell-now-btn">დაიწყე გაყიდვა</button>
+        </div>
+    </header>
+
+    <!-- პროდუქტების სექცია -->
+    <section class="products-section">
+        <div class="section-header">
+            <h2>პოპულარული პროდუქტები</h2>
+            <a href="#all-products" class="view-all">ყველას ნახვა</a>
+        </div>
+        <div class="products-grid" id="products-container">
+            <!-- პროდუქტების ბარათები დინამიურად ჩაიტვირთება JavaScript-ით -->
+        </div>
+    </section>
+
+    <!-- როგორ მუშაობს სექცია -->
+    <section class="how-it-works" id="how-it-works">
+        <h2>როგორ მუშაობს?</h2>
+        <div class="steps-container">
+            <div class="step-card neumorphic-card">
+                <div class="step-icon">1</div>
+                <h3>შექმენი ანგარიში</h3>
+                <p>დარეგისტრირდი როგორც გამყიდველი ან მყიდველი</p>
+            </div>
+            <div class="step-card neumorphic-card">
+                <div class="step-icon">2</div>
+                <h3>ატვირთე პროდუქტი</h3>
+                <p>დაამატე პროდუქტის დეტალები და ფოტოები</p>
+            </div>
+            <div class="step-card neumorphic-card">
+                <div class="step-icon">3</div>
+                <h3>დაუკავშირდი</h3>
+                <p>მიიღე შეტყობინებები პოტენციური მყიდველებისგან</p>
+            </div>
+            <div class="step-card neumorphic-card">
+                <div class="step-icon">4</div>
+                <h3>გაიყიდე</h3>
+                <p>დაეთანხმე პირობებს და გაყიდე პროდუქტი</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ავტორიზაციის მოდალური ფანჯრები -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <h2>შესვლა</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">ელ. ფოსტა ან ტელეფონი</label>
+                    <input type="text" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">პაროლი</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="submit-btn">შესვლა</button>
+                <p class="form-footer">არ გაქვს ანგარიში? <a href="#" id="show-register">დარეგისტრირდი</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="register-modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <h2>რეგისტრაცია</h2>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="reg-name">სახელი</label>
+                    <input type="text" id="reg-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-email">ელ. ფოსტა</label>
+                    <input type="email" id="reg-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-phone">ტელეფონის ნომერი</label>
+                    <input type="tel" id="reg-phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-password">პაროლი</label>
+                    <input type="password" id="reg-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="reg-confirm-password">გაიმეორე პაროლი</label>
+                    <input type="password" id="reg-confirm-password" required>
+                </div>
+                <button type="submit" class="submit-btn">რეგისტრაცია</button>
+                <p class="form-footer">უკვე გაქვს ანგარიში? <a href="#" id="show-login">შესვლა</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="otp-modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <h2>ვერიფიკაცია</h2>
+            <p>ჩვენ გამოგიგზავნეთ ვერიფიკაციის კოდი თქვენს ელ. ფოსტაზე/ტელეფონზე</p>
+            <form id="otp-form">
+                <div class="form-group">
+                    <label for="otp-code">ვერიფიკაციის კოდი</label>
+                    <input type="text" id="otp-code" required maxlength="6">
+                </div>
+                <button type="submit" class="submit-btn">დადასტურება</button>
+                <p class="form-footer">არ მიგიღია კოდი? <a href="#" id="resend-otp">ხელახლა გაგზავნა</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- პროდუქტის დამატების მოდალური ფანჯარა -->
+    <div class="modal" id="add-product-modal">
+        <div class="modal-content glass-card">
+            <span class="close-modal">&times;</span>
+            <h2>პროდუქტის დამატება</h2>
+            <form id="add-product-form">
+                <div class="form-group">
+                    <label for="product-title">პროდუქტის სახელი</label>
+                    <input type="text" id="product-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">კატეგორია</label>
+                    <select id="product-category" required>
+                        <option value="">აირჩიეთ კატეგორია</option>
+                        <option value="electronics">ელექტრონიკა</option>
+                        <option value="furniture">ავეჯი</option>
+                        <option value="clothing">ტანსაცმელი</option>
+                        <option value="books">წიგნები</option>
+                        <option value="other">სხვა</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">ფასი (₾)</label>
+                    <input type="number" id="product-price" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="product-description">აღწერა</label>
+                    <textarea id="product-description" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-location">მდებარეობა</label>
+                    <input type="text" id="product-location" required>
+                    <div id="location-map" style="height: 200px; margin-top: 10px; display: none;"></div>
+                </div>
+                <div class="form-group">
+                    <label>ფოტოები (მაქსიმუმ 5)</label>
+                    <div class="image-upload-container">
+                        <label for="product-images" class="upload-btn">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>აირჩიეთ ფაილები</span>
+                        </label>
+                        <input type="file" id="product-images" multiple accept="image/*" style="display: none;">
+                        <div class="image-preview" id="image-preview"></div>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn">გამოქვეყნება</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ფუტერი -->
+    <footer class="glass-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>MarketPlace</h3>
+                <p>თქვენი პროდუქტების გაყიდვის საუკეთესო პლატფორმა</p>
+            </div>
+            <div class="footer-section">
+                <h3>ბმულები</h3>
+                <ul>
+                    <li><a href="index.html">მთავარი</a></li>
+                    <li><a href="#categories">კატეგორიები</a></li>
+                    <li><a href="#how-it-works">როგორ მუშაობს</a></li>
+                    <li><a href="terms.html">წესები და პირობები</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>კონტაქტი</h3>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> info@marketplace.ge</li>
+                    <li><i class="fas fa-phone"></i> +995 123 456 789</li>
+                    <li><i class="fas fa-map-marker-alt"></i> თბილისი, საქართველო</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 MarketPlace. ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places" async defer></script>
+</body>
+</html>
